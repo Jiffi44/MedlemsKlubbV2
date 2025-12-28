@@ -1,9 +1,8 @@
 package com.medlemsklubb.data;
 import com.medlemsklubb.head.Item;
 import java.util.*;
-import java.util.stream.Collectors;
 
-public class Invetory {
+public class Inventory {
     private final List<Item> items = new ArrayList<>();
 
     public void add(Item item) {
