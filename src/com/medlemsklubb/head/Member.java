@@ -4,10 +4,12 @@ import java.time.format.DateTimeFormatter;
 import java.time.ZonedDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.atomic.AtomicInteger;
 
 // klass för medlem
 public class Member {
-    private static int counter = 50000; // varje medlem får ett unikt id
+
+    private static final AtomicInteger counter = new AtomicInteger(50000); // varje medlem får ett unikt id
     private final int id; // id (kan inte ändras)
     private String firstname; //förnamn
     private String lastname; // efternamn
@@ -17,12 +19,15 @@ public class Member {
 
     //Konstruktor
     public Member(String firstname, String lastname, String level, boolean license) {
-        this.id = ++counter; // id skapas och ökar med 1
+        this.id = counter.incrementAndGet(); // id skapas och ökar med 1
         this.firstname = firstname;
         this.lastname = lastname;
-        this.level = (level == null || level.isBlank())  // standard status om null
-                ? StatusLevel.STANDARD
-                : level;
+        if (level == null || level.trim().isEmpty()) {
+            this.level = StatusLevel.STANDARD;
+        }
+        else {
+            this.level = level.trim().toUpperCase();
+        }
         this.license = license;
     }
 
@@ -47,6 +52,10 @@ public class Member {
         return history;
     }
 
+    public boolean hasLicense() {
+        return license;
+    }
+
 //setters
 
     public void setFirstname(String firstname) {
@@ -58,10 +67,19 @@ public class Member {
     }
 
     public void setLevel(String level) {
-        this.level = (level ==  null || level.isBlank()) ? StatusLevel.STANDARD : level;
+        if (level == null || level.trim().isEmpty()) {
+            this.level = StatusLevel.STANDARD;
+        }
+        else {
+            this.level = level.trim().toUpperCase();
+        }
     }
     public boolean setLicense(boolean licens) {
+        this.license = licens;
         return licens;
+    }
+    public boolean hasLicensed() {
+        return license;
     }
 
     public void addHistory(String line) {
