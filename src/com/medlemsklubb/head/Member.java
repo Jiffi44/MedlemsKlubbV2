@@ -9,8 +9,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 // klass för medlem
 public class Member {
 
-    private static final AtomicInteger counter = new AtomicInteger(50000); // varje medlem får ett unikt id
-    private final int id; // id (kan inte ändras)
+    private int id; // id
     private String firstname; //förnamn
     private String lastname; // efternamn
     private String level; //satus/nivå (standard, senior, student)
@@ -19,15 +18,18 @@ public class Member {
 
     //Konstruktor
     public Member(String firstname, String lastname, String level, boolean license) {
-        this.id = counter.incrementAndGet(); // id skapas och ökar med 1
         this.firstname = firstname;
         this.lastname = lastname;
-        if (level == null || level.trim().isEmpty()) {
-            this.level = StatusLevel.STANDARD;
-        }
-        else {
-            this.level = level.trim().toUpperCase();
-        }
+        this.level = level;
+        this.license = license;
+    }
+
+    //konstruktor för filinläsning
+    public Member(int id, String firstname, String lastname, String level, boolean license) {
+        this.id = id;
+        this.firstname = firstname;
+        this.lastname = lastname;
+        this.level = level;
         this.license = license;
     }
 

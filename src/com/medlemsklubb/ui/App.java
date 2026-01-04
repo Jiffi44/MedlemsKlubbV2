@@ -15,6 +15,8 @@ import javafx.scene.control.*;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
 import javafx.util.StringConverter;
+import com.medlemsklubb.data.DataLoader;
+
 
 import java.time.LocalDate;
 import java.util.List;
@@ -41,12 +43,9 @@ public class App extends Application {
         inventory = new Inventory();
         rentalService = new RentalService(inventory, memberRegistry);
 
-        //Ett par items
-        inventory.add(new Bil("B001", "Manuell bil", 120, "Mercedes", "Svart", true));
-        inventory.add(new Bil("B002", "Automat bil", 100, "BMW", "VIt", true));
-        inventory.add(new Elskooter("S001", "Elskooter mini", 15, "skooter", false, 20));
-        inventory.add(new Elskooter("S002", "Eslkooter super pro", 35, "skooter", true, 35));
-
+        // läser in fil från start
+        DataLoader.loadMember(memberRegistry);
+        DataLoader.loadInventory(inventory);
 
         //skapar första scenen
         stage.setTitle("Medlemsklubb");

@@ -1,0 +1,4 @@
+B001;Bil;Manuell bil;120;Mercedes;Svart;true
+B002;Bil;Automat bil;100;BMW;Vit;true
+S001;Elskooter;Elskooter mini;1;Skooter;false;20
+S002;Elskooter;Elskooter pro;1;Skooter;true;35
