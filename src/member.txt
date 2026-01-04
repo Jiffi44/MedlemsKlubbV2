@@ -1,0 +1,5 @@
+1;Jafeth;Kiaco;STUDENT;true
+2;Dode;Kiaco;STANDARD;true
+3;Lewis;Hamilton;STANDARD;true
+4;Christiano;Ronaldo;SENIOR;false
+
